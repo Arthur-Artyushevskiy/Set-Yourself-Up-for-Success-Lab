@@ -4,11 +4,54 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 class AppTest {
-    @Test void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+
+    @Test
+    void testRemoveDuplicates_Empty() {
+        ArrayList<Integer> input = new ArrayList<>(List.of());
+        ArrayList<Integer> result = App.removeDuplicates(input);
+
+        assertEquals(0, result.size());
+    }
+
+    @Test
+    void testRemoveDuplicates_Integers() {
+        ArrayList<Integer> input = new ArrayList<>(List.of(1, 1, 3, 3, 5, 5));
+        ArrayList<Integer> result = App.removeDuplicates(input);
+
+
+        List<Integer> expected = List.of(1, 3, 5);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void testRemoveDuplicates_Strings() {
+        ArrayList<String> input = new ArrayList<>(List.of("A", "A", "B"));
+        ArrayList<String> result = App.removeDuplicates(input);
+
+        List<String> expected = List.of("A", "B");
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void testRemoveDuplicates_SizeOnly() {
+        ArrayList<Integer> input = new ArrayList<>(List.of(10, 20, 10, 30));
+        ArrayList<Integer> result = App.removeDuplicates(input);
+
+        assertEquals(3, result.size());
+    }
+
+    @Test
+    void testRemoveDuplicates_AllSame() {
+        ArrayList<Integer> input = new ArrayList<>(List.of(5, 5, 5, 5));
+        ArrayList<Integer> result = App.removeDuplicates(input);
+
+        assertEquals(1, result.size());
+        assertEquals(5, result.get(0));
     }
 }

@@ -3,12 +3,34 @@
  */
 package org.example;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class App {
     public String getGreeting() {
         return "Hello World!";
     }
 
+    public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list){
+        Set<T> set = new HashSet<>(list);
+        ArrayList<T> return_set = new ArrayList<>(set);
+        return return_set;
+    }
+
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+
+        ArrayList<Integer> int_set = new ArrayList<>(List.of());
+        System.out.println(removeDuplicates(int_set)); // Returns []
+        int_set = new ArrayList<>(List.of(1));
+        System.out.println(removeDuplicates(int_set)); // Returns [1]
+        int_set = new ArrayList<>(List.of(1,2,3));
+        System.out.println(removeDuplicates(int_set)); // Returns [1, 2, 3]
+        var string_set = new ArrayList<String>(List.of("A","A","B"));
+        System.out.println(removeDuplicates(string_set)); // Returns ["A", "B"]
+        int_set = new ArrayList<>(List.of(1,1,3,3,5,5));
+        System.out.println(removeDuplicates(int_set)); // Returns [1, 3, 5]
+
     }
 }
